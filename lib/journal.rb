@@ -56,6 +56,7 @@ class Journal
     opts = {
       trim_user: true,
       tweet_mode: "extended",
+      count: 200
     }.merge!(opts)
 
     log "Fetching tweets #{opts.inspect}"
