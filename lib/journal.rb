@@ -7,10 +7,10 @@ end
 
 class Journal
   def initialize db = DB, config = JournalConfig
-    @db = db 
+    @db = db
     @config = config
     @twitter = Twitter::REST::Client.new do |conf|
-      conf.consumer_key = @config[:consumer_key] 
+      conf.consumer_key = @config[:consumer_key]
       conf.consumer_secret = @config[:consumer_secret]
       conf.access_token  = @config[:access_token]
       conf.access_token_secret = @config[:access_token_secret]
@@ -43,7 +43,7 @@ class Journal
     tweets = fetch_tweets(opts)
 
     log "Found #{tweets.length} new tweet(s)"
-    
+
     tweets.each do |tweet|
       store_tweet tweet
       store_hashtags tweet
@@ -64,10 +64,12 @@ class Journal
     @twitter.user_timeline @config[:username], opts
   end
 
+  # Search tweets for the given text
   def search text
     @db[:tweets].where(Sequel.like(:text, "%#{@db[:tweets].escape_like(text)}%"))
   end
 
+  # Search tweets for the given hashtag
   def find_hashtag hashtag
     DB[:tweets].join(:hash_tags_tweets, tweet_id: :tweet_id).join(:hash_tags, id: :hash_tag_id).where(Sequel[:hash_tags][:text] => hashtag)
   end
