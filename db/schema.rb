@@ -1,6 +1,7 @@
 require 'sequel'
 
 DB = Sequel.sqlite "db/journal.db"
+Sequel.database_timezone = :utc
 
 unless DB.table_exists? :tweets 
   DB.create_table :tweets do
