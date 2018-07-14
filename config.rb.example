@@ -1,0 +1,14 @@
+# Create an application at https://apps.twitter.com/
+# Go to "Keys and Access Tokens"
+# Click "Create my access token"
+# Copy all the keys and secrets down below
+# Rename this file "config.rb.example" -> "config.rb"
+
+JournalConfig = {
+  consumer_key: "",
+  consumer_secret: "",
+  access_token: "",
+  access_token_secret: "",
+  username: "",
+  update_frequency: 1400, 
+}

@@ -1,0 +1,10 @@
+require_relative '../db/schema'
+require_relative '../config'
+require_relative '../lib/journal'
+
+j = Journal.new
+
+loop do
+  j.fetch_and_store_latest
+  sleep JournalConfig[:update_frequency]
+end
