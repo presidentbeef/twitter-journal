@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Tweet Journal</title>
+    <link rel="stylesheet" href="/css/bulma.min.css">
+    <!-- <script defer src="https://use.fontawesome.com/releases/v5.1.0/js/all.js"></script> -->
+  </head>
+  <body style="background-color: #e6eef1">
+    <section class="section">
+      <div class="container">
+        <div class="columns is-centered">
+          <div class="column is-narrow is-half">
+            <% tweets.each do |day, day_tweets| %>
+              <h2 class="subtitle has-text-centered"><%= day %></h2>
+              <% day_tweets.each do |tweet| %>
+                <% time = tweet[:created_at].getlocal %>
+
+                <div class="box">
+                  <div class="content">
+                    <p class="is-italic"><%= time.strftime("%l:%M %p") %></p>
+                    <p><%= tweet[:text] %></p>
+                  </div>
+                </div>
+              <% end %>
+            <% end %>
+          </div>
+        </div>
+      </div>
+    </section>
+  </body>
+</html>
