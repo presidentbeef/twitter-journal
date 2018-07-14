@@ -17,6 +17,12 @@ class Journal
     end
   end
 
+  def tweets_by_day
+    @db[:tweets].reverse(:created_at).all.group_by do |tweet|
+      tweet[:created_at].strftime("%B %-d, %Y")
+    end
+  end
+
   # Returns true if there are any Tweets at all in the database
   def any_tweets?
     @db[:tweets].count > 0
