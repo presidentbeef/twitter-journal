@@ -1,6 +1,6 @@
 require 'sequel'
 
-DB = Sequel.sqlite "db/journal.db"
+DB = Sequel.sqlite "#{File.expand_path(__dir__)}/journal.db"
 Sequel.database_timezone = :utc
 
 unless DB.table_exists? :tweets 
